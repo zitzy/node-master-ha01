@@ -36,24 +36,24 @@ httpsServer.listen(config.httpsPort, function(){
 // Allt the server logic for http and https
 const unifiedServer = function(req, res) {
     // Get the URL and parse it
-    var parsedUrl = url.parse(req.url, true);
+    const parsedUrl = url.parse(req.url, true);
     
     // Get path
-    var path = parsedUrl.pathname;
-    var trimmedPath = path.replace(/^\/+|\/+$/g,'');
+    const path = parsedUrl.pathname;
+    const trimmedPath = path.replace(/^\/+|\/+$/g,'');
 
     // Get query string as an object
-    var queryStringObject = parsedUrl.query;
+    const queryStringObject = parsedUrl.query;
 
     // Get the HTTP method
-    var method = req.method.toLowerCase();
+    const method = req.method.toLowerCase();
 
     // Get the headers as an object
-    var headers = req.headers;
+    const headers = req.headers;
 
     // Get the payload if any
-    var decoder = new StringDecoder('utf-8');
-    var buffer = '';
+    const decoder = new StringDecoder('utf-8');
+    const buffer = '';
 
     req.on('data', function(data){
         buffer += decoder.write(data);
@@ -83,7 +83,7 @@ const unifiedServer = function(req, res) {
             payload = typeof(payload) == "object" ? payload : {};
 
             // Convert the payload to string
-            var payloadString = JSON.stringify(payload);
+            const payloadString = JSON.stringify(payload);
 
             // Return the response
             res.setHeader('Content-Type','application/json');
